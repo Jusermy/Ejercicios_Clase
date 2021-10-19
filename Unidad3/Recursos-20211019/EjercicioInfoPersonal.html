@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h3>Informacion escrita</h3>
+	<p id="nombre"></p>
+	<p id="apellido"></p>
+	<p id="edad"></p>
+	<p id="numUsuario"></p>
+	<script type="text/javascript">
+		document.getElementById("nombre").innerHTML= "Nombre: " + window.opener.recogerNombre().value;
+		document.getElementById("apellido").innerHTML= "Apellido: " + window.opener.recogerApellido().value;
+		document.getElementById("edad").innerHTML= "Edad: " + window.opener.recogerEdad().value;
+		document.getElementById("numUsuario").innerHTML = "Usuario numero " + window.opener.recogerContador();
+	</script>
+</body>
+</html>

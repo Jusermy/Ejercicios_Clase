@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let num = parseInt(prompt("Escribe la edad"));
+
+		window.opener.numEdad = num;
+
+		window.opener.document.getElementById("edad").innerHTML = "Edad: " + num;
+
+		if (num >= 18) {
+			window.opener.document.getElementById("resultado").innerHTML = "Es mayor de edad";
+		}
+		else{
+			window.opener.document.getElementById("resultado").innerHTML = "Es menor de edad";	
+		}
+
+		window.close();
+	</script>
+</body>
+</html>

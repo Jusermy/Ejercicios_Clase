@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<p id="texto">Lorem ipsum dolor, sit, amet consectetur adipisicing elit. Voluptas at iure iste soluta aliquid quisquam excepturi, eius. Natus, voluptas a ab distinctio obcaecati ut nulla corrupti aspernatur officiis magnam cum.</p>
+	<script type="text/javascript">
+		//recogemos todo el texto de fichero en un array
+		let palabras = document.getElementById("texto").innerHTML.split(" ");
+		//tomamos el texto del buscador
+		let texto = window.opener.recogerTexto();
+		console.log(texto);
+		//tenemos en cuenta si los checkboxs estan habilitados
+		let cb1 = window.opener.comprobarPrimerCB();
+		let cb2 = window.opener.comprobarSegundoCB();
+
+		for(let i = 0; i < palabras.length; i++){
+			if (palabras[i] === texto) {
+				palabras[i] = `* ${palabras[i]}`;
+			}
+		}
+
+		document.getElementById("texto").innerHTML = palabras.join(" ");
+	</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<form>
+		<label for="nombre">
+		<input type="text" name="nombre" id="nombre">Nombre</label><br>
+		<label for="apellido">
+		<input type="text" name="apellido" id="apellido">Apellido</label><br>
+		<label for="edad">
+		<input type="number" name="edad" id="edad">Edad</label><br>
+		<input type="button" value="enviar" onclick="abrirVentana()">
+	</form>
+
+	<script type="text/javascript">
+		let cont = 0;
+		function abrirVentana(){
+			let vs = null;
+
+			vs = window.open("EjercicioInfoPersonal.html", "Informacion", "height = 200, width = 200");
+			cont++;
+		}
+
+		function recogerNombre(){
+			return document.getElementById("nombre");
+		}
+		function recogerApellido(){
+			return document.getElementById("apellido");
+		}
+		function recogerEdad(){
+			return document.getElementById("edad");
+		}
+		function recogerContador(){
+			return cont;
+		}
+	</script>
+</body>
+</html>

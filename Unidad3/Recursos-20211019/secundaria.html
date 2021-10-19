@@ -1,0 +1,31 @@
+<html>
+<head>
+	<script src="comunicacion.js" type="text/javascript" defer async></script>
+</head>
+	<body>
+		
+		<h1> ventana secundaria</h1><br>	
+		<p id="idDestino"> ----------- destinos ---------- </p>	
+		<div id="texto">Aquí aparecera el texto que escribas en el cuadro de texto de la otra pestaña</div>
+ 
+</body>
+</html>
+		
+	</body>
+	<script>
+		function mostrar(){
+			alert("Dentro");
+
+			//var contenido = window.opener.url
+			document.getElementById("idDestino").innerHTML = window.opener.devolverInfo();
+		}
+
+		mostrar();
+		//google-chrome --args --disable-web-security --user-data-dir=".........."
+		window.opener.saludo();
+
+
+		
+	</script>	
+</html>
+
