@@ -17,7 +17,7 @@
     }
 
     function recogerTexto(){
-        return document.getElementById("texto").innerHTML;
+        return document.getElementById("text").innerHTML;
     }
 
     function comprobarPrimerCB(){

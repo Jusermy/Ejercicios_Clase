@@ -12,13 +12,15 @@
 		let palabras = document.getElementById("texto").innerHTML.split(" ");
 		//tomamos el texto del buscador
 		let texto = window.opener.recogerTexto();
-		console.log(texto);
+		console.log("El texto es: " + texto);
 		//tenemos en cuenta si los checkboxs estan habilitados
 		let cb1 = window.opener.comprobarPrimerCB();
 		let cb2 = window.opener.comprobarSegundoCB();
 
 		for(let i = 0; i < palabras.length; i++){
+			console.log("entra 1");
 			if (palabras[i] === texto) {
+				console.log("entra 2");
 				palabras[i] = `* ${palabras[i]}`;
 			}
 		}

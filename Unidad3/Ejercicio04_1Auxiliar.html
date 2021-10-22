@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<p id="texto"></p>
+	<script type="text/javascript">
+		console.log(window.opener.opcion)
+		switch(window.opener.opcion){
+			case 1:
+				nombres.forEach(
+					(nombre, pos) => document.getElementById("texto").innerHTML = `Socio ${pos}: ${nombre}`);
+			break;
+			case 2:
+				console.log("El numero total de socios es: " + nombres.length);
+			break;
+			case 3:
+			break;
+			case 4:
+			break;
+			default:
+			console.log("no entra")
+			break;
+		}
+	</script>
+</body>
+</html>
