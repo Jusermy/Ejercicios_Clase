@@ -9,7 +9,7 @@ let nota;
 
 //recogemos el nombre de alumnos y sus notas
 for (let i = 0; i < numAlumnos; i++){
-	
+	nombre = prompt(`Nombre del alumnoi`)
 	alumnos.set();
 }
 
