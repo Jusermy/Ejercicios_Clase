@@ -24,8 +24,10 @@
 			for(let i = 0; i < cont; i++){
 				let cb = document.createElement("input");
 				cb.setAttribute("type","checkbox");
-				cb.setAttribute("value", Math.random());
+				let label = document.createElement("label");
+				label.appendChild(document.createTextNode(Math.random()));
 				div.appendChild(cb);
+				div.appendChild(label);
 				div.appendChild(document.createElement("br"));
 			}
 		}
