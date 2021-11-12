@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<span>Numero de checkbox</span>
+	<input type="number" name="num" id="nums">
+	<button onclick="crearcb()">Crear Checkbox</button>
+	<div id="cbs"></div>
+	<script type="text/javascript">
+		/*
+			Hacer un programa que permita crear checkbox de forma dinámica al pulsar el botón.
+			• El número de checkbox, debe ser especificado en un campo de tipo texto(input)
+		*/
+		function crearcb() {
+			//recogemos el numero del input
+			let cont = document.getElementsByTagName("input")[0].value;
+			//recogemos el div
+			let div = document.getElementById("cbs");
+
+			for(let i = 0; i < cont; i++){
+				let cb = document.createElement("input");
+				cb.setAttribute("type","checkbox");
+				cb.setAttribute("value", Math.random());
+				div.appendChild(cb);
+				div.appendChild(document.createElement("br"));
+			}
+		}
+	</script>
+</body>
+</html>
