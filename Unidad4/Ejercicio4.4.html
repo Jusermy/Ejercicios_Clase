@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<span>Lista de la compra</span>
+	<ul>
+		<!--<li onclick="borrar(e)">Azucar</li>
+		<li onclick="borrar(e)">Cerveza</li>
+		<li onclick="borrar(e)">Pan</li>
+		<li onclick="borrar(e)">Patatas</li>-->
+		<li>azucar</li>
+		<li>cerveza</li>
+		<li>pan</li>
+		<li>patatas</li>
+	</ul>
+	<input type="text" name="" id="nuevo">
+	<button onclick="anadir()">Añadir</button>
+	<script type="text/javascript">
+		function anadir(){
+			//tomamos la lista actual
+			let lista = document.querySelector("ul");
+			let input = document.querySelector("input");
+			//comprobamos si el input tiene algo
+			if (input.value != "") {
+				//creacion el nuevo elemento con el producto
+				let producto = document.createElement("li");
+				//añadimos el contenido
+				producto.appendChild(document.createTextNode(input.value));
+				//lo añadimos a la lista
+				lista.appendChild(producto);
+				//obtenemos la nueva lista ordenada
+				let arr = Array.from(document.querySelector("ul").children);
+				console.log(arr);
+				arr.map(e => e.innerHTML).sort();
+				console.log(arr)
+				//borramos el anterior html
+				Array.from(lista.children).forEach(function(v,k){
+					lista.removeChild(lista.children[k]);
+				})
+				//añadimos el nuevo array como nodos
+				arr.forEach(function(valor){
+					console.log("valor")
+					let li = document.createElement("li");
+					li.appendChild(document.createTextNode(valor.value));
+					lista.appendChild(li);
+				})
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .verde {
+            color: green;
+        }
+        .azul {
+            color: blue;
+        }
+        .rojo {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <span>*Se aceptan varias respuestas separadas por coma</span><br>
+    <label for="">¿Mi Deporte Favorito?
+        <input type="text" id="deporte">
+    </label><br>
+    <label for="">¿Mi Serie Favorita?
+        <input type="text" id="serie">
+    </label><br>
+    <label for="">¿Mi pelicula Favorita?
+        <input type="text" id="peli">
+    </label><br><br>
+    <button onclick="aceptar()">Aceptar aficiones</button>
+    <br><br>
+    <h1>MIS AFICIONES</h1>
+    <div>
+        <p class="rojo">¿Mi deporte favorito?</p>
+            <div class="pregunta"></div>
+        <p class="rojo">¿Mi serie favorita?</p>
+            <div class="pregunta"></div>
+        <p class="rojo">¿Mi pelicula favorita?</p>
+            <div class="pregunta"></div>
+    </div>
+    <script src="Ejercicio4.3.js"></script>
+</body>
+</html>
