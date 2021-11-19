@@ -61,22 +61,29 @@ function pintarBarcos(tipo, sentido){
 	}
 }
 
+function abrirDemo(){
+	let vs = window.open("ver_demo.html", "Demo", "height: 100, width:100");
+}
+
+function abrirInfo(){
+	let vs = window.open("ver_info.html", "Informacion", "height: 100, width: 100");
+}
 
 /*--------------Codigo--------------------------*/
 //creamos la matriz donde comprobaremos la disponibilidad de las posiciones
 let matriz = crearMatriz();
 
 //Definir un set con el tipo de Barcos posibles.
-let tiposBarcos = new Set(["lanchas", "portaAviones", "flota", "armada"]);
+var tiposBarcos = new Set(["lanchas", "portaAviones", "flota", "armada"]);
 
 //Definir un map(constante) llamado tamanoBarcos, siendo la clave el tipo de barco y el valor la longitud de ese tipo de barco.
-let tamanoBarcos = new Map([["lanchas",2], ["portaAviones",3], ["flota", 4], ["armada", 3]]);
+var tamanoBarcos = new Map([["lanchas",2], ["portaAviones",3], ["flota", 4], ["armada", 3]]);
 
 //Definir un map (constante) llamado numeroBarcos, siendo la "clave" el tipo de barco y en "valor" el número de barcos con ese tamaño.
-let numeroBarcos = new Map([["lanchas",2], ["portaAviones",3], ["flota", 1], ["armada", 4]]);
+var numeroBarcos = new Map([["lanchas",2], ["portaAviones",3], ["flota", 1], ["armada", 4]]);
 
 //Definir un map con los colores de cada barco
-let colorBarcos = new Map([["lanchas","red"], ["portaAviones","blue"], ["flota", "yellow"], ["armada", "green"]]);
+var colorBarcos = new Map([["lanchas","red"], ["portaAviones","blue"], ["flota", "yellow"], ["armada", "green"]]);
 
 function ubicarBarcos(){
 	//primero iremos a coger el tipo de barco
@@ -89,6 +96,7 @@ function ubicarBarcos(){
 		let correcto; 
 		//con la variable sentido, haremos con un random que escoja 0 o 1 (horizontal o vertical)
 		let sentido = 0;
+
 		for (let i = 0; i < numBarcos; i++){
 			correcto = false;
 			do{
@@ -100,10 +108,11 @@ function ubicarBarcos(){
 				y < 0 ? y = 0 : y = y;
 				correcto = verificarCampos(tipo, sentido)
 			}while(!correcto)
+
 			//las coordenadas disponibles fueron ubicadas
 			pintarBarcos(tipo, sentido);
 		}
-	})
+	});
 }
 ubicarBarcos();
 
