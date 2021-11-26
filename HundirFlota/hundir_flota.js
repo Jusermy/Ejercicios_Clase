@@ -60,6 +60,8 @@ function pintarBarcos(tipo, sentido){
 		}
 	}
 }
+//funciones para completar la informacion de autor y jugador
+function 
 
 function abrirDemo(){
 	let vs = window.open("ver_demo.html", "Demo", "height: 100, width:100");
@@ -69,7 +71,9 @@ function abrirInfo(){
 	let vs = window.open("ver_info.html", "Informacion", "height: 100, width: 100");
 }
 
+
 /*--------------Codigo--------------------------*/
+
 //creamos la matriz donde comprobaremos la disponibilidad de las posiciones
 let matriz = crearMatriz();
 
