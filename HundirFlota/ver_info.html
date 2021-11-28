@@ -6,41 +6,9 @@
 	<title>Document</title>
 </head>
 <body>
-	<h1>Informacion sobre los barcos</h1>
-	<div>
-		
-	</div>
-	<script type="text/javascript">
-		let tpBarco = window.opener.tiposBarcos;
-		let tmnoBarco = window.opener.tamanoBarcos;
-		let numBarco = window.opener.numeroBarcos;
-		let clrBarco = window.opener.colorBarcos;
+	<h1>Información sobre los barcos</h1>
+	<div></div>
 
-		//creamos una tabla para la informacion
-		let tabla = document.createElement("table");
-		//la primera fila con cada titulo
-		let tr = document.createElement("tr");
-
-		//para Tipo
-		let td = document.createElement("td");
-		let contenido = document.createTextNode("Tipo");
-		td.appendChild(contenido);
-		tr.appendChild(td);
-		tabla.appendChild(tr);
-		
-		//para Tamaño
-		//para numero de barco
-		//para color de barco
-		//empezamos a añadir los barcos
-		tpBarco.forEach(function(tipo){
-			tr = document.createElement("tr");
-			td = document.createElement("td");
-			contenido = document.createTextNode(tipo);
-			td.appendChild(contenido);
-			tr.appendChild(td);
-		});
-		tabla.appendChild(tr);
-		document.querySelector("div").appendChild(tabla)
-	</script>
+	<script type="text/javascript" src="ver_info.js"></script>
 </body>
 </html>

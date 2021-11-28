@@ -215,10 +215,6 @@ function pintarBarcos(tipo, sentido){
 		}
 	}
 }
-//funciones para completar la informacion de autor y jugador
-function completarAutor(){
-	let vs =
-}
 
 function abrirDemo(){
 	let vs = window.open("ver_demo.html", "Demo", "height: 100, width:100");
@@ -228,6 +224,18 @@ function abrirInfo(){
 	let vs = window.open("ver_info.html", "Informacion", "height: 100, width: 100");
 }
 
+function infoAutor(){
+	let vs = window.open("infoAutor.html", "Informacion", "height: 100, width: 100");
+}
+
+function infoJugador(){
+	let vs = window.open("infoJugador.html", "Informacion", "height: 100, width: 100");
+}
+
+//funciones para completar la informacion de autor y jugador
+function completarAutor(){
+	//let vs =
+}
 
 /*--------------Codigo--------------------------*/
 
@@ -264,6 +272,7 @@ function ubicarBarcos(){
 				x = parseInt(Math.random()*10 - tamano +1);
 				y = parseInt(Math.random()*10 - tamano +1);
 				sentido = Math.round(Math.random());
+				
 				//en caso de que el random de -1
 				x < 0 ? x = 0 : x = x;
 				y < 0 ? y = 0 : y = y;
