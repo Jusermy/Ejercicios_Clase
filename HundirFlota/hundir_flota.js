@@ -217,19 +217,19 @@ function pintarBarcos(tipo, sentido){
 }
 
 function abrirDemo(){
-	let vs = window.open("ver_demo.html", "Demo", "height: 100, width:100");
+	let vs = window.open("ver_demo.html", "Demo", "height=400xp, width=400px");
 }
 
 function abrirInfo(){
-	let vs = window.open("ver_info.html", "Informacion", "height: 100, width: 100");
+	let vs = window.open("ver_info.html", "Informacion", "height=300xp, width=450px");
 }
 
 function infoAutor(){
-	let vs = window.open("infoAutor.html", "Informacion", "height: 100, width: 100");
+	let vs = window.open("infoAutor.html", "Informacion", "height=300xp, width=300px");
 }
 
 function infoJugador(){
-	let vs = window.open("infoJugador.html", "Informacion", "height: 100, width: 100");
+	let vs = window.open("infoJugador.html", "Informacion", "height=300xp, width=300px");
 }
 
 //funciones para completar la informacion de autor y jugador
