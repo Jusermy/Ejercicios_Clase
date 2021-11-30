@@ -88,6 +88,12 @@ class autor extends personaC{
 		this.#_idA = valor;
 	}
 
+	info(){
+		let informacion = new Map([["Nombre", this.nombre], ["Apellidos", this.apellidos], ["Edad", this.edad],
+			["Github", this.github], ["Lenguaje", this.lenguaje], ["Version", this.version]])
+		return informacion;
+	}
+
 	static saludo(){
 		return "Saludos del autor";
 	}
@@ -134,6 +140,12 @@ class jugador extends personaC{
 		this.#_idJ = valor;
 	}
 
+	info(){
+		let informacion = new Map([["Nombre", this.nombre], ["Apellidos", this.apellidos], ["Edad", this.edad],
+		 ["Puntuacion", this.puntuacion], ["Aciertos", this.aciertos], ["Fallos", this.fallos]])
+		return informacion;
+	}
+
 	static saludo(){
 		return "Saludos del jugador";
 	}
@@ -154,10 +166,10 @@ class jugador extends personaC{
 */
 
 class Barco{
-	constructor(tamano, color){
+	constructor(t, c){
 		this._tamano = t;
 		this._color = c;
-		this._coordenadas = new Map();
+		this._coordenadas = {};
 	}
 
 	get tamano(){
@@ -171,7 +183,7 @@ class Barco{
 	}
 
 	anadirCoords(valor){
-		_coordenadas.add(valor);
+		_coordenadas.push(valor);
 	}
 }
 
@@ -217,16 +229,19 @@ function verificarCampos(tipo, sentido){
 }
 
 function pintarBarcos(tipo, sentido){
-	let barco = new Barco(tamanoBarcos.get(tipo), colorBarcos.get(tipo));
+	//Crearemos una instancia de la clase class para el barco actual 
+	let barc = new Barco(tamanoBarcos.get(tipo), colorBarcos.get(tipo));
 	//ocupamos la celda y la pintamos
 	matriz[x][y] = 1;
-	matrizDemo.add([])
+	//añadimos estas coordenadas a la instancia barco
+	barc.anadirCoords([[x],[y]]);
 	document.getElementById(`id_${x}_${y}`).style.backgroundColor = colorBarcos.get(tipo);
 	//horizontal
 	if(sentido == 0){
 		//ocupamos las casillas siguientes a ella
 		for(let i = 0; i < tamanoBarcos.get(tipo); i++){
 			matriz[x][y+i] = 1;
+			barc.anadirCoords([[x],[y+i]]);
 			document.getElementById(`id_${x}_${y+i}`).style.backgroundColor = colorBarcos.get(tipo);
 		}
 	}
@@ -235,30 +250,41 @@ function pintarBarcos(tipo, sentido){
 		//ocupamos las casillas siguientes a ella
 		for(let i = 0; i < tamanoBarcos.get(tipo); i++){
 			matriz[x+i][y] = 1;
+			barc.anadirCoords([[x+i],[y]]);
 			document.getElementById(`id_${x+i}_${y}`).style.backgroundColor = colorBarcos.get(tipo);
 		}
 	}
+	//finalmente añadimos la instancia al matriz de barcos
+	matrizDemo.push(barc);
 }
 
 function abrirDemo(){
-	let vs = window.open("ver_demo.html", "Demo", "height=400xp, width=400px");
+	let vs = window.open("ver_demo.html", "Demo", "height=400px, width=400px");
 }
 
 function abrirInfo(){
-	let vs = window.open("ver_info.html", "Informacion", "height=300xp, width=450px");
+	let vs = window.open("ver_info.html", "Informacion", "height=300px, width=450px");
 }
 
 function infoAutor(){
-	let vs = window.open("infoAutor.html", "Informacion", "height=300xp, width=300px");
+	let vs = window.open("infoAutor.html", "Informacion", "height=350px, width=300px");
 }
 
 function infoJugador(){
-	let vs = window.open("infoJugador.html", "Informacion", "height=300xp, width=300px");
+	let vs = window.open("infoJugador.html", "Informacion", "height=350px, width=300px");
 }
 
 //funciones para completar la informacion de autor y jugador
 function completarAutor(){
-	//let vs =
+	//nombre apellido edad github lenguaje version
+	let aut = new autor("Jeremy", "Perez", 24, "https://github.com/Jusermy", "Js", "1.0");
+	return aut;
+}
+
+function completarJugador(){
+	//nombre apellido edad puntuacion aciertos fallos
+	let jug = new jugador("Jugador", "Random", 20, 0, 0, 0);
+	return jug;
 }
 
 /*--------------Codigo--------------------------*/
@@ -267,7 +293,7 @@ function completarAutor(){
 let matriz = crearMatriz();
 
 //creamos un Map para la matriz de la demo donde iremos introduciendo "en orden" las posiciones y el color de estas
-let matrizDemo = new Map();
+let matrizDemo = [];
 
 //Definir un set con el tipo de Barcos posibles.
 var tiposBarcos = new Set(["lanchas", "portaAviones", "flota", "armada"]);
@@ -312,7 +338,8 @@ function ubicarBarcos(){
 	});
 }
 ubicarBarcos();
-
+var autor1 = completarAutor();
+var jugador1 = completarJugador();
 
 
 

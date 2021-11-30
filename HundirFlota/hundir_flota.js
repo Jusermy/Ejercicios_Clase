@@ -165,6 +165,28 @@ class jugador extends personaC{
 	>'adios'
 */
 
+class Barco{
+	constructor(tamano, color){
+		this._tamano = t;
+		this._color = c;
+		this._coordenadas = [];
+	}
+
+	get tamano(){
+		return this._tamano;
+	}
+	get color(){
+		return this._color;
+	}
+	get coordenadas(){
+		return this._coordenadas;
+	}
+
+	anadirCoords(valor){
+		_coordenadas.push(valor);
+	}
+}
+
 /*--------------------Funciones--------------------*/
 function crearMatriz(){
 	let mtz = new Array(10);
@@ -210,12 +232,16 @@ function pintarBarcos(tipo, sentido){
 	//ocupamos la celda y la pintamos
 	matriz[x][y] = 1;
 	document.getElementById(`id_${x}_${y}`).style.backgroundColor = colorBarcos.get(tipo);
+	//introducimos los datos en la matriz para la demo
+	matrizDemo.push([[x],[y],[colorBarcos.get(tipo)]]);
+
 	//horizontal
 	if(sentido == 0){
 		//ocupamos las casillas siguientes a ella
 		for(let i = 0; i < tamanoBarcos.get(tipo); i++){
 			matriz[x][y+i] = 1;
 			document.getElementById(`id_${x}_${y+i}`).style.backgroundColor = colorBarcos.get(tipo);
+			matrizDemo.push([[x],[y+i],[colorBarcos.get(tipo)]]);
 		}
 	}
 	//vertical
@@ -224,6 +250,7 @@ function pintarBarcos(tipo, sentido){
 		for(let i = 0; i < tamanoBarcos.get(tipo); i++){
 			matriz[x+i][y] = 1;
 			document.getElementById(`id_${x+i}_${y}`).style.backgroundColor = colorBarcos.get(tipo);
+			matrizDemo.push([[x+i],[y],[colorBarcos.get(tipo)]]);
 		}
 	}
 }
@@ -262,8 +289,8 @@ function completarJugador(){
 //creamos la matriz donde comprobaremos la disponibilidad de las posiciones
 let matriz = crearMatriz();
 
-//creamos un Map para la matriz de la demo donde iremos introduciendo "en orden" las posiciones y el color de estas
-let matrizDemo = new Map();
+//creamos un array para la matriz de la demo donde iremos introduciendo "en orden" las posiciones y el color de estas
+var matrizDemo = [];
 
 //Definir un set con el tipo de Barcos posibles.
 var tiposBarcos = new Set(["lanchas", "portaAviones", "flota", "armada"]);
