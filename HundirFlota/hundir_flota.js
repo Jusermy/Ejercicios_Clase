@@ -256,7 +256,7 @@ function pintarBarcos(tipo, sentido){
 }
 
 function abrirDemo(){
-	let vs = window.open("ver_demo.html", "Demo", "height=400px, width=400px");
+	let vs = window.open("ver_demo.html", "Demo", "height=500px, width=500px");
 }
 
 function abrirInfo(){
