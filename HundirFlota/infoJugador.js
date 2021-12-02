@@ -18,15 +18,15 @@ div.appendChild(p);
 
 //añadimos la puntuacion actual
 p = document.createElement("p");
-p.appendChild(document.createTextNode(`Github: ${jugador.puntuacion}`));
+p.appendChild(document.createTextNode(`Puntuación: ${jugador.puntuacion}`));
 div.appendChild(p);
 
 //añadimos los aciertos actuales
 p = document.createElement("p");
-p.appendChild(document.createTextNode(`Lenguaje: ${jugador.aciertos}`));
+p.appendChild(document.createTextNode(`Aciertos: ${jugador.aciertos}`));
 div.appendChild(p);
 
 //añadimos los fallos actuales
 p = document.createElement("p");
-p.appendChild(document.createTextNode(`Version: ${jugador.fallos}`));
+p.appendChild(document.createTextNode(`Fallos: ${jugador.fallos}`));
 div.appendChild(p);
