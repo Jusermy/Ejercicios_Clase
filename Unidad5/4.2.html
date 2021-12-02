@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*Crea una clase Televisores que hereda de Productos y que tiene una nueva propiedad llamada tamaño. El método getInfo mostrará el tamaño junto al nombre*/
+
+        class Productos{
+            constructor(n, c, u, p){
+                this._nombre = n;
+                this._categoria = c;
+                this._unidades = u;
+                this._precio = p;
+            }
+
+            get nombre(){
+                return this._nombre; 
+            }
+
+            set nombre(valor){
+                this._nombre = valor;
+            }
+
+            get categoria(){
+                return this._categoria;
+            }
+
+            set categoria(valor){
+                this._categoria = valor;
+            }
+
+            get unidades(){
+                return this._unidades;
+            }
+
+            set unidades(valor){
+                this._unidades = valor;
+            }
+
+            get precio(){
+                return this._precio;
+            }
+
+            set precio(valor){
+                this._precio = valor;
+            }
+
+            importe(){
+                return this.unidades*this.precio;
+            }
+
+            getInfo(){
+                return `${this.nombre}, ${this.categoria}: ${this.unidades}, ${this.precio}/unidad. Importe ${this.importe()} euros`;
+            }
+        }
+
+        class Televisores extends Productos{
+            constructor(n, c, u, p, t){
+                super(n, c, u, p);
+                this._tamanio = t;
+            }
+
+            get tamanio(){
+                return this._tamanio;
+            }
+
+            set tamanio(valor){
+                this._tamanio = valor;
+            }
+            getInfo(){
+                let info = super.getInfo();
+                return `${info}. ${this.tamanio}`;
+            }
+        }
+    </script>
+</body>
+</html>
