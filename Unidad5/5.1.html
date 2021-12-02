@@ -8,6 +8,88 @@
 <body>
     <script>
         /*Modifica las clases Productos y Televisores para que el método que muestra los datos del producto se llame de una manera más adecuada*/
+        class Productos{
+            constructor(n, c, u, p){
+                this._nombre = n;
+                this._categoria = c;
+                this._unidades = u;
+                this._precio = p;
+            }
+
+            get nombre(){
+                return this._nombre; 
+            }
+
+            set nombre(valor){
+                this._nombre = valor;
+            }
+
+            get categoria(){
+                return this._categoria;
+            }
+
+            set categoria(valor){
+                this._categoria = valor;
+            }
+
+            get unidades(){
+                return this._unidades;
+            }
+
+            set unidades(valor){
+                this._unidades = valor;
+            }
+
+            get precio(){
+                return this._precio;
+            }
+
+            set precio(valor){
+                this._precio = valor;
+            }
+
+            importe(){
+                return this.unidades*this.precio;
+            }
+
+            getInfo(){
+                return `${this.nombre}, ${this.categoria}: ${this.unidades}, ${this.precio}/unidad. Importe ${this.importe()} euros`;
+            }
+
+            toString(){
+                return this._nombre;
+            }
+
+            valueOf(){
+                return this._precio;
+            }
+        }
+
+        class Televisores extends Productos{
+            constructor(n, c, u, p, t){
+                super(n, c, u, p);
+                this._tamanio = t;
+            }
+
+            get tamanio(){
+                return this._tamanio;
+            }
+
+            set tamanio(valor){
+                this._tamanio = valor;
+            }
+            getInfo(){
+                let info = super.getInfo();
+                return `${info}. ${this.tamanio}`;
+            }
+            toString(){
+                return this._nombre;
+            }
+
+            valueOf(){
+                return this._precio;
+            }
+        }
     </script>
 </body>
 </html>
