@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<p></p>
+	</div>
+	<script type="text/javascript">
+		let personas = window.opener.individuos;
+		if(window.opener.opcion == 4){//borraremos por contenido
+			let seleccion = prompt("Borrar por contenido", "Edad");
+			let persona = "";
+			personas.forEach(function(edad, nombre){
+				if (edad == seleccion) {
+					persona = nombre;
+				}
+			});
+			if (persona != "") {
+				personas.delete(persona);
+				alert(`${persona} fue eliminado por tener ${seleccion}`)
+			}
+			else{
+				alert("No hay nadie con esa edad")
+				window.close()
+			}
+		}
+		else{//borraremos por indice
+			let seleccion = prompt("Borrar por indice", "Nombre");
+			//preguntamos si existe ese nombre
+			if(personas.has(seleccion)){
+				personas.delete(seleccion);
+				alert(`${seleccion} ha sido eliminado`)
+			}
+			else{
+				alert("No existe esta persona");
+				window.close();
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<p></p>
+	</div>
+	<script type="text/javascript">
+		let personas = window.opener.individuos;
+		let pregunta = prompt("Nombre");
+		//si esta el nombre le devolvemos la edad
+		if (personas.has(pregunta)) {
+			alert(`La edad es ${personas.get(pregunta)}`)
+		}else{
+			document.querySelector("p").innerHTML = "No existe este nombre";
+		}
+	</script>
+</body>
+</html>

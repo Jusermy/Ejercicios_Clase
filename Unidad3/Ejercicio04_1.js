@@ -7,13 +7,13 @@
 
  * */
  
-	 /*let nombres = [];
+	 let nombres = [];
 	 for (let i = 0; i < 10; i++){
-	 	nombres.push(prompt(`Introduzca el socio numero ${i+1}`));
-	 }*/
+	 	nombres.push(prompt(`Introduzca el socio numero ${i+1}`, `Socio numero ${i+1}`));
+	 }
 	
-	let nombres = ["Facu", "Sosa", "Diego", "Daniel", "Abraham", "Edu", "Julian", "Yamc", "Jeremy", "Jiale"];
-	let opcion = 0;
+	//var nombres = ["Facu", "Sosa", "Diego", "Daniel", "Abraham", "Edu", "Julian", "Yamc", "Jeremy", "Jiale"];
+	var opcion = 0;
 
 	function mostrarSocios(){
 		let vs = window.open("Ejercicio04_1Auxiliar.html", "Pagina", "width: 200, height:200");

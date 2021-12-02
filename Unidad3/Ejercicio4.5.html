@@ -14,12 +14,12 @@
          Borrar un socio localizado por su índice
     -->
     <a href="#" onclick="abrir()">Mostrar Nombres y edades</a><br>
-    <a href="#" onclick="abrirMedia()">Mostrar media</a>
-    <a href="#" onclick="anadir()">Comprobar edad</a>
-    <a href="#" onclick="anadir()">Borrar un socio buscando su contenido</a>
-    <a href="#" onclick="anadir()">Borrar un socio localizado por su índice</a>
+    <a href="#" onclick="abrirMedia()">Mostrar media</a><br>
+    <a href="#" onclick="comprobar()">Comprobar nombre</a><br>
+    <a href="#" onclick="comprobarEdad()">Borrar un socio buscando su contenido (edad)</a><br>
+    <a href="#" onclick="comprobarNombre()">Borrar un socio localizado por su índice (nombre)</a>
     <script>
-        let opcion = 0;
+        var opcion = 0;
         function abrir(){
             window.open("Ejercicio4.3Auxiliar.html")
             opcion = 1;
@@ -36,9 +36,25 @@
             });
             return total / edades.length;
         }   
+        function comprobar(){
+            let vs = window.open("Ejercicio4.4Auxiliar.html","Auxiliar","width=800, height=400");
+        }
+        function comprobarEdad(){
+            let vs = window.open("Ejercicio4.5Auxiliar.html","Auxiliar","width=800, height=400");
+            opcion = 4;
+        }
+        function comprobarNombre(){
+            let vs = window.open("Ejercicio4.5Auxiliar.html","Auxiliar","width=800, height=400");
+            opcion = 5;
+        }
 
-        let nombre = ["Adolf", "Edward", "Alfonse", "Dereck", "Damien", "Adan"];
-        let edad = [13,32,41,20,25,17];
+        var nombre = ["Adolf", "Edward", "Alfonse", "Dereck", "Damien", "Adan"];
+        var edad = [13,32,41,20,25,17];
+
+        var individuos = new Map(); 
+        for(let i = 0; i < nombre.length; i++){
+            individuos.set(nombre[i],edad[i])
+        }
          
     </script>
 </body>

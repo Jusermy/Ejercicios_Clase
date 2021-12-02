@@ -8,22 +8,26 @@
 <body>
 	<p id="texto"></p>
 	<script type="text/javascript">
-		console.log(window.opener.opcion)
+		let nmbs = window.opener.nombres;
 		switch(window.opener.opcion){
 			case 1:
-				nombres.forEach(
-					(nombre, pos) => document.getElementById("texto").innerHTML = `Socio ${pos}: ${nombre}`);
-			break;
+				nmbs.forEach(
+					(nombre, pos) => document.getElementById("texto").innerHTML += `Socio ${pos}: ${nombre} <br>`);
+				break;
 			case 2:
-				console.log("El numero total de socios es: " + nombres.length);
-			break;
+				document.querySelecto("#texto").innerHTML = "El numero total de socios es: " + nmbs.length;
+				break;
 			case 3:
-			break;
+				nmbs.forEach(
+					(nombre, pos) => document.getElementById("texto").innerHTML += `Socio ${pos}: ${nombre} <br>`).sort();
+				break;
 			case 4:
-			break;
+				nmbs.forEach(
+					(nombre, pos) => document.getElementById("texto").innerHTML += `Socio ${pos}: ${nombre} <br>`).reverse();
+				break;
 			default:
-			console.log("no entra")
-			break;
+				console.log("no entra")
+				break;
 		}
 	</script>
 </body>

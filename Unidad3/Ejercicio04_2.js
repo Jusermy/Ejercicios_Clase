@@ -9,12 +9,24 @@ let nota;
 
 //recogemos el nombre de alumnos y sus notas
 for (let i = 0; i < numAlumnos; i++){
-	nombre = prompt(`Nombre del alumnoi`)
-	alumnos.set();
+	let respuesta = prompt(`Nombre del alumno y nota`, "Nombre - Nota");
+	let resultado = respuesta.split("-");
+	alumnos.set(
+					resultado[0], resultado[1],
+				);
 }
 
 //mostramos
+alumnos.forEach(function(valor, pos){
+	console.log(`${pos} tiene un ${valor}`)
+});
 
-for (let i = 0; i < alumnos.length; i++){
+//la media
+let total = 0;
+alumnos.forEach(function(e,n){
+	total += parseInt(e)});
 
-}
+let media = total / alumnos.size;
+console.log(media)
+
+

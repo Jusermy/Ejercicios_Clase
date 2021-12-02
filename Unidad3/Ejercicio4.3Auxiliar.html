@@ -10,10 +10,10 @@
     <p id="resultado"></p>
     <script>
         let edades = window.opener.edad;
-        if(window.opener == 1){
+        if(window.opener.opcion == 1){
             let nombres = window.opener.nombre;
             for(let i = 0; i < edades.length; i++){
-                document.getElementById("resultado").innerHTML += `Nombre ${nombres[i]}, edad ${edades[i]}`;
+                document.getElementById("resultado").innerHTML += `Nombre ${nombres[i]}, edad ${edades[i]} <br>`;
             }
         }
         else{
