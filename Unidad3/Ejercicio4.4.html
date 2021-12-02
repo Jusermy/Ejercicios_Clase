@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+       Añadir, al final del ejercicio anterior, un enlace que de la posibilidad de introducir un
+        nombre por pantalla y conocer su edad si existe y si no un mensaje de advertencia.
+    -->
+    <a href="#" onclick="abrir()">Mostrar Nombres y edades</a><br>
+    <a href="#" onclick="abrirMedia()">Mostrar media</a>
+    <a href="#" onclick="anadir()">Comprobar edad</a>
+    <script>
+        let opcion = 0;
+        function abrir(){
+            window.open("Ejercicio4.3Auxiliar.html")
+            opcion = 1;
+        }
+        function abrirMedia() {
+            window.open("Ejercicio4.3Auxiliar.html")
+            opcion = 2;
+        }
+        function mediaEdades(edades){
+            console.log("es " + edades);
+            let total = 0;
+            edades.forEach(e => {
+               total += e;
+            });
+            return total / edades.length;
+        }   
+
+        let nombre = ["Adolf", "Edward", "Alfonse", "Dereck", "Damien", "Adan"];
+        let edad = [13,32,41,20,25,17];
+         
+    </script>
+</body>
+</html>

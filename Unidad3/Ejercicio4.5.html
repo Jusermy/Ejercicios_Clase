@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        Completar el ejercicio anterior con la presentación de dos enlaces en pantalla con las
+        siguientes opciones:
+         Borrar un socio buscando su contenido
+         Borrar un socio localizado por su índice
+    -->
+    <a href="#" onclick="abrir()">Mostrar Nombres y edades</a><br>
+    <a href="#" onclick="abrirMedia()">Mostrar media</a>
+    <a href="#" onclick="anadir()">Comprobar edad</a>
+    <a href="#" onclick="anadir()">Borrar un socio buscando su contenido</a>
+    <a href="#" onclick="anadir()">Borrar un socio localizado por su índice</a>
+    <script>
+        let opcion = 0;
+        function abrir(){
+            window.open("Ejercicio4.3Auxiliar.html")
+            opcion = 1;
+        }
+        function abrirMedia() {
+            window.open("Ejercicio4.3Auxiliar.html")
+            opcion = 2;
+        }
+        function mediaEdades(edades){
+            console.log("es " + edades);
+            let total = 0;
+            edades.forEach(e => {
+               total += e;
+            });
+            return total / edades.length;
+        }   
+
+        let nombre = ["Adolf", "Edward", "Alfonse", "Dereck", "Damien", "Adan"];
+        let edad = [13,32,41,20,25,17];
+         
+    </script>
+</body>
+</html>

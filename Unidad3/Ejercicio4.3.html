@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        Crear un array para los nombres y otro para las edades. Introducir en el elemento 0 del
+        primer array un nombre y en el elemento 0 del segundo array su edad y así sucesivamente hasta 6
+        nombres. Crear un enlace que permita mostrar por pantalla cada nombre con su edad y otro para ver
+        la media de todas las edades. Utilizar una función para calcular la media de las edades.
+    -->
+    <a href="#" onclick="abrir()">Mostrar Nombres y edades</a><br>
+    <a href="#" onclick="abrirMedia()">Mostrar media</a>
+    <script>
+        let opcion = 0;
+        function abrir(){
+            window.open("Ejercicio4.3Auxiliar.html")
+            opcion = 1;
+        }
+        function abrirMedia() {
+            window.open("Ejercicio4.3Auxiliar.html")
+            opcion = 2;
+        }
+        function mediaEdades(edades){
+            console.log("es " + edades);
+            let total = 0;
+            edades.forEach(e => {
+               total += e;
+            });
+            return total / edades.length;
+        }   
+
+        let nombre = ["Adolf", "Edward", "Alfonse", "Dereck", "Damien", "Adan"];
+        let edad = [13,32,41,20,25,17];
+         
+    </script>
+</body>
+</html>
