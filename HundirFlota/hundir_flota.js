@@ -165,6 +165,7 @@ class jugador extends personaC{
 	>'adios'
 */
 
+/*Clase Barco, aun no implementada*/
 class Barco{
 	constructor(tamano, color){
 		this._tamano = t;
@@ -206,25 +207,34 @@ function verificarCampos(tipo, sentido){
 	//horizontal
 	if(sentido == 0){
 		if(matriz[x][y+1] == 0){ 
-			for(let i = 0; i < tamanoBarcos.get(tipo); i++){
+			for(let i = 1; i < tamanoBarcos.get(tipo); i++){
 				//si encontramos una casilla ocupada, nos salimos y volvemos a buscar otra coordenada
 				if(matriz[x][y+i] == 1){
 					return false;
 				}
 			}
 		}
+		//si nos encontramos que hay un 1, devolvemos false
+		else{
+			return false;
+		}
 	}
 	//vertical
 	else{
 		if(matriz[x+1][y] == 0){ 
-			for(let i = 0; i < tamanoBarcos.get(tipo); i++){
+			for(let i = 1; i < tamanoBarcos.get(tipo); i++){
 				//si encontramos una casilla ocupada, nos salimos y volvemos a buscar otra coordenada
 				if(matriz[x+i][y] == 1){
 					return false;
 				}
 			}
 		}
+		//si nos encontramos que hay un 1, devolvemos false
+		else{
+			return false;
+		}
 	}
+	//no ha habido ninguna casilla ocupada en la extension del barco actual
 	return true;
 }
 
@@ -337,43 +347,3 @@ function ubicarBarcos(){
 ubicarBarcos();
 var autor1 = completarAutor();
 var jugador1 = completarJugador();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*function verificarCampos(tipo, x, y){
-	if(matriz[x][y+1] == 0){ 
-		if(tipo === "lanchas"){
-			//si la casilla siguiente esta desocupada devolvemos true
-			if(matriz[x][y+1] == 0){
-				console.log("entra en if lanchas")
-				return true;
-			}
-		}
-		else if(tipo === "portaAviones"){
-			//si las dos casillas siguientes estan desocupadas
-			if(matriz[x][y+1] == 0 && matriz[x][y+2] == 0){
-				console.log("entra en if portaAviones")
-				return true;
-			}
-		}
-		else if(tipo === "flota"){
-			//si las dos casillas siguientes estan desocupadas
-			if(matriz[x][y+1] == 0 && matriz[x][y+2] == 0 && matriz[x][y+3] == 0){
-				console.log("entra en if flota")
-				return true;
-			}
-		}
-	}
-	return false;
-}*/
