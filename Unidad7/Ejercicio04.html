@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="imgs/papeleraVacia.jpg" alt="" id="papelera">
+    <img src="imgs/bola.jpg" alt="" id="bola">
+    <script>
+        let bola = document.getElementById("bola");
+        let papelera = document.getElementById("papelera");
+
+        //esto solo evitara que el icono de no permitido cambie para poder
+        //arrastar la bola
+        document.addEventListener("dragover", (evt) =>{
+            evt.preventDefault();
+        })
+
+        document.addEventListener("drop", (evt)=>{
+            //el raton se posa en la papelera
+            if(evt.target == papelera){
+                papelera.src = "imgs/papeleraLLena.jpg";
+            }
+
+            //a los 3 segundos se vaciará
+            let interval = setTimeout(()=>{
+            if(papelera.getAttribute("src") == "imgs/papeleraLLena.jpg"){
+                    papelera.src = "imgs/papeleraVacia.jpg";
+                }
+            }, 3000);
+
+        });
+
+    </script>
+</body>
+</html>

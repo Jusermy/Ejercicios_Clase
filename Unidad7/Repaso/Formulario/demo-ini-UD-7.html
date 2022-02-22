@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formularios en JavaScript</title>
+  <script type="text/javascript" src="./eventos-ini.js" defer></script>
+    
+</head>
+<body> 
+  <h1> UD 7 : Eventos y Formularios </h1>
+
+  <form id="idFormulario">
+      <!-- ÁREA de INPUT TEXT --> 
+      <label for="idNombre"> Nombre</label>
+      <input type="text" id="idNombre" />
+    
+    <br>
+    <br>
+
+      <!-- ÁREA de RadioButton  : si , no , nsnc -->    
+      <input type="radio" value="Si" name="respuestas" id="idRbSi">Si 
+      <input type="radio" value="No" name="respuestas" id="idRbNo">No 
+      <input type="radio" value="NsNc" name="respuestas" id="idRbNsNc">NsNc <br>
+
+      <!--Pero mejor escrito
+        <label for="idPreguntaSi">Si</label>
+        <input type="radio" value="si" name="respuestas" id="idPreguntasSi">
+      -->
+    <br>
+    <br>
+
+    <!-- ÁREA de checkbox  : condiciones y privacidad -->   
+      <label for="idCondiciones">He leído y aceptado las condiciones</label>
+      <input type="checkbox" value="condiciones" name="condiciones" id="idCondiciones">
+
+      <label for="idPrivacidad">He leído y aceptado la política de privacidad</label>
+      <input type="checkbox" value="privacidad" name="privacidad" id="idPrivacidad">
+    <br>
+    <br>
+
+    <!-- ÁREA de Select  : primer, segundo, tercer, cuarto -->   
+      <label for="idLista">Lista de elementos Select</label>
+      <select name="lista" id="idLista">
+          <option value="opcionPrimera">Primera opcion</option>
+          <option value="opcionSegunda">Segunda opcion</option>
+          <option value="opcionTercera">Tercera opcion</option>
+          <option value="opcionCuarta">Cuarta opcion</option>
+      </select>
+
+    <br>
+    <br>
+    
+    <!-- ÁREA de input list + DataList : primer, segundo, tercer, cuarto --> 
+        Lista de elementos Datalist
+        <input id="idInputList" list="inputList">
+        <datalist id="inputList">
+          <option value="primerValor">
+          <option value="segundoValor">
+          <option value="tercerValor">
+          <option value="cuartoValor">
+        </datalist>
+
+    <br>
+    <br>
+
+    <input id="idEnviar" type="button" value="Enviar"/>
+         
+  </form>
+</body>
+</html>

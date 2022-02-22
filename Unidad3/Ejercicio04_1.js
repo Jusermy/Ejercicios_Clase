@@ -12,7 +12,6 @@
 	 	nombres.push(prompt(`Introduzca el socio numero ${i+1}`, `Socio numero ${i+1}`));
 	 }
 	
-	//var nombres = ["Facu", "Sosa", "Diego", "Daniel", "Abraham", "Edu", "Julian", "Yamc", "Jeremy", "Jiale"];
 	var opcion = 0;
 
 	function mostrarSocios(){

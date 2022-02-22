@@ -1,0 +1,29 @@
+
+let peticionhttp=new XMLHttpRequest();
+
+let boton = document.getElementById("idBoton");
+
+boton.addEventListener('click',cargarAJAX,false);
+
+
+
+function cargarAJAX() {  
+
+  peticionhttp.addEventListener('load',cargar,false);
+  
+  peticionhttp.open("GET", "http://www.dwec.agustin.com/index.html", true);
+  peticionhttp.send(null); 
+  
+};
+
+function cargar() {
+     
+    var r = document.getElementById("idResultado");
+    if (peticionhttp.readyState == 4 && peticionhttp.status == 200) {      
+      
+      r.innerHTML = peticionhttp.responseText
+      
+    } else {
+      r.innerHTML = "En proceso";
+    }
+  }

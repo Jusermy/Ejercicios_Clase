@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Posición ratón en tiempo real</h1>
+    <ul>
+        <li>Posición X: <span id="posx"></span></li>
+        <li>Posición Y: <span id="posy"></span></li>
+    </ul>
+    <script>
+        function ubicacion(evt){
+            //modificamos el valor de x
+            document.querySelector("#posx").innerHTML = evt.clientX;
+            //modificamos el valor de y
+            document.querySelector("#posy").innerHTML = evt.clientY;
+        }
+        document.addEventListener("mousemove", ubicacion);
+    </script>
+</body>
+</html>

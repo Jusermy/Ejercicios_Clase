@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>Pulsame</button>
+    <script>
+        function cambiarColor(evt){
+            //si el target es un tipo submit (boton) le cambiara el color al body
+            if(evt.target.type == "submit"){
+                document.body.style.backgroundColor = `rgb(${Math.random()*255}, ${Math.random()*255},${Math.random()*255})`;
+            }
+            //si no le pondra el color blanco al padre
+            else{
+                document.body.style.backgroundColor = "white";
+            }
+            //evt.preventDefault hace que el submit no se lance 
+        }
+        document.addEventListener("click", cambiarColor)
+    </script>
+</body>
+</html>

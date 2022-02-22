@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #caja{
+            width: 50px;
+            height: 50px;
+            border: 3px solid red;
+            background-color: black;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div id="caja"></div>
+    <script>
+        let caja = document.getElementById("caja");
+        let posx = 0;
+        let posy = 0;
+        let avance = 10;
+        function mover(evt){
+            switch (evt.key) {
+                case "w":
+                case "ArrowUp":
+                    if (posx != 0) {
+                        posx = posx - avance;   
+                        caja.style.top = posx + "px";
+                    }
+                    break;
+                case "s":
+                case "ArrowDown":
+                    if ((posx -50 -6) != window.screen.height) {
+                        posx = posx + avance;
+                        caja.style.top = posx + "px";   
+                        console.log(posx)    
+                    }
+                    break;
+                case "a":
+                case "ArrowLeft":
+                    if (posy != 0) {
+                        posy = posy - avance;   
+                        caja.style.left = posy + "px";
+                    }
+                    break;
+                case "d":
+                case "ArrowRight":
+                    if ((posy -50 -6) != window.screen.width) {
+                        posy = posy + avance;
+                        caja.style.left = posy + "px";
+                        console.log(posy)   
+                    }
+                    break;    
+            }
+        }
+        document.addEventListener("keydown", mover);
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Formulario de provincias y comunidades</h1>
+    <select name="provincia" id="idProvincia">
+
+    </select>
+    <select name="comunidad" id="idComunidad">
+
+    </select>
+    <script>
+        //los valores del primer select se introducen por codigo
+        let provincias = document.getElementById("idProvincia");
+        let comunidades = document.getElementById("idComunidad");
+        let primerCambio = true; //para borrar el valor predeterminado de provincias
+
+        let provinciaSet = new Set(["Andalucia", "Madrid", "Galicia"]);
+        let comunidadMap = new Map([
+                                    ["Andalucia",["Almería", "Cádiz", "Córdoba","Granada", "Huelva", "Jaén", "Málaga", "Sevilla"]],
+                                    ["Madrid", "Madrid Capital"],
+                                    ["Galicia",["La Coruña", "Lugo", "Orense", "Pontevedra"]],
+                                ]);
+
+        function anadirOption(sel, valor){
+            var option = document.createElement("option");
+            option.text = valor;
+            option.value = valor;
+            if(valor == "Granada"){
+                option.setAttribute("selected", "selected");    
+            }
+            sel.appendChild(option);
+        }
+        
+        //creamos las opciones predefinidas
+        anadirOption(provincias, "Ninguno seleccionado");
+        anadirOption(comunidades, "Ninguno seleccionado");
+
+        
+        //creamos las opciones de provincias
+        provinciaSet.forEach(e => {
+            anadirOption(provincias, e)
+        });
+
+        //un evento para cuando cambie el select
+        provincias.addEventListener("change", ()=>{
+            //obtenemos el valor actual
+            let provnc = provincias.options[provincias.selectedIndex].value;
+            let comuns = comunidadMap.get(provnc);
+            
+            //borramos los valores de comunidades
+            for (var i = 0; i < comunidades.length; i++) {
+                comunidades.removeChild(comunidades.firstChild);
+                //despues de eliminarlo, el length de comunidades se reduce
+                i--;
+            }
+            
+            //si la provincia no es madrid ni el valor por defecto
+            if(provnc != "Madrid" && provnc != "Ninguno seleccionado"){
+                comuns.forEach(e => {
+                    anadirOption(comunidades, e);
+                })
+            }
+            else{
+                anadirOption(comunidades, comuns);
+            }
+
+            //si es el primer cambio se borra el valor por defecto de provincias
+            if(primerCambio){
+                console.log("entra");
+                provincias.removeChild(provincias.firstChild);
+                primerCambio = false;
+            }
+        });
+    </script>
+</body>
+</html>

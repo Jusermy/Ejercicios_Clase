@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Formulario de prueba</h1>
+    <form action="" method="get" id="idForm">
+        <label for="idNombre">Nombre: </label>
+            <input type="text" name="nombre" id="idNombre"><br><br>
+
+        <label for="idEdad">Edad: </label>
+            <input type="number" name="edad" id="idEdad"><br><br>
+            
+        <label for="idPass">Contraseña: </label>
+            <input type="password" name="pass" id="idPass"><br><br>
+
+        <label for="idTextarea">Escribe lo que quieras: </label><br>
+            <textarea name="" cols="30" rows="10" id="idTextarea"></textarea><br><br>
+
+        <label for="idEmail">Email: </label>
+            <input type="email" id="idEmail"><br><br>
+
+        <label for="idFecha">Fecha: </label>
+            <input type="date" name="fecha" id="idFecha"><br><br>
+
+        <label for="idColores">Colores: </label>
+            <input type="color" id="idColores"><br><br>
+
+        <label for="idAsignaturas">Asignaturas: </label>
+            <input id="idAsignaturas" list="asignaturas"/>
+            <datalist id="asignaturas">
+                <option value="Cliente">
+                <option value="Servidor">
+                <option value="Diseño">
+                <option value="Despliegue">
+            </datalist><br><br>    
+
+        <label for="idIdioma">Idioma: </label>
+            <select name="idioma" id="idIdioma">
+                <option value="#" selected></option>
+                <option value="esp">Español</option>
+                <option value="ing">Inglés</option>
+                <option value="ale">Aleman</option>
+            </select><br><br>
+
+        <label for="sexo" id="idSexo">Sexo:</label><br>
+            <input type="radio" value="hombre" name="sexo" id="sexHombre">Hombre<br>
+            <input type="radio" value="mujer" name="sexo" id="sexMujer">Mujer<br><br>
+
+        <label for="idSituacion">Situacion: </label>
+            <input type="checkbox" id="idSituacion" value="Empleado">Empleado<br><br>
+
+            <input type="hidden" id="idHidden" value="12345"> 
+
+        <input type="submit" id="idSubmit">
+
+        <div id="respuestas"></div>
+        <script src="Ejercicio05.js"></script>
+    </form>
+
+    <div id="respuestas">
+
+    </div>
+</body>
+</html>
