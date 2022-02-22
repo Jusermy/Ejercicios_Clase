@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+	<form id="idFormulario" method="get" action="tablero_iniciales_alumnos.html">
+		<label for="idNombre">Nombre</label>
+		<input type="text" name="nombre" id="idNombre" min="2" max="12" required>
+		<span id="errorNombreJs" class="error"></span>
+		<br>
+		<span id="errorNombreApi" class="error"></span>
+		<br>
+		<br>
+		<label for="idApellido">Apellidos</label>
+		<input type="text" name="apellidos" id="idApellido" min="4" max="20" required>
+		<span id="errorApellidoJs" class="error"></span>
+		<br>
+		<span id="errorApellidoApi" class="error"></span>
+		<br>
+		<br>
+		<label for="idEdad">Edad</label>
+		<input type="number" name="edad" id="idEdad" min="6" max="100" required>
+		<label id="errorEdadJs" class="error"></label>
+		<br>
+		<label id="errorEdadApi" class="error"></label>
+		<br>
+		<br>
+		<input type="submit" name="enviar" id="idEnviar" value="Enviar">
+	</form>
+
+	<script src="indexForm.js"></script>
+</body>
+</html>

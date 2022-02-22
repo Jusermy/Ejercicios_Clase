@@ -1,2 +1,3 @@
-2021/11/19-16:53:36.489 2c026 Creating DB /home/jeremy/workspace/Ejercicios_Clase/HundirFlota/Default/Extension Rules since it was missing.
-2021/11/19-16:53:36.559 2c026 Reusing MANIFEST /home/jeremy/workspace/Ejercicios_Clase/HundirFlota/Default/Extension Rules/MANIFEST-000001
+2022/02/22-14:55:52.977 3084 Reusing MANIFEST /home/administrador/workspace/Ejercicios_Clase/HundirFlota/Default/Extension Rules/MANIFEST-000001
+2022/02/22-14:55:52.977 3084 Recovering log #3
+2022/02/22-14:55:52.978 3084 Reusing old log /home/administrador/workspace/Ejercicios_Clase/HundirFlota/Default/Extension Rules/000003.log 

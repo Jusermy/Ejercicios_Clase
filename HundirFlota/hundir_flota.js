@@ -290,17 +290,74 @@ function completarAutor(){
 
 function completarJugador(){
 	//nombre apellido edad puntuacion aciertos fallos
-	let jug = new jugador("Jugador", "Random", 20, 0, 0, 0);
+	let jug = new jugador(nombreUrl, apellidosUrl, edadUrl, 0, 0, 0);
 	return jug;
 }
 
+function anadirEscuchador(){
+	//recogemos todos los tr
+	let trs = document.getElementsByTagName("tbody")[0].children;
+	for (let x = 0; x < trs.length; x++){
+		for(let y = 0; y < trs[x].children.length; y++){
+			//añadimos el evento clic de disparar a cada td
+			trs[x].children[y].addEventListener("click", disparar);
+		}
+	}
+}
+
+function disparar(casilla){
+	//si toca agua
+	if(casilla.target.style.backgroundColor == ""){
+		alert("agua")
+		casilla.target.style.backgroundColor = "aquamarine";
+	}
+	else{
+		alert("flota");
+		casilla.target.style.backgroundColor = "black";
+	}
+	//una vez hayamos hecho clic a la casilla, esta ya no requiere
+	//que siga escuchando mas clics
+	quitarEscucha(this);
+}
+
+function quitarEscucha(casilla){
+	casilla.removeEventListener("click", disparar);
+}
+
+/**
+ * 
+ * 
+ * IDEAS
+ * Podemos hacer que las puntuaciones mas altas del jugador sean almacenadas en un json
+ * Para ello tendremos que añadir una manera de que en la database recuperemos un jugador
+ * en concreto. Dni no es una buena idea
+ * 
+ * Hay que intentar ver como hacemos para que las casillas no se muestren el color
+ * 
+ * Es posible que tengamos que generar la matriz mediante codigo y no por el html
+ * 
+ * 
+ * /
+
 /*--------------Codigo--------------------------*/
+
+//obtenemos los datos del formulario por la url
+const url = new URLSearchParams(window.location.search);
+var nombreUrl = url.get("nombre");
+var apellidosUrl = url.get("apellidos");
+var edadUrl = url.get("edad");
 
 //creamos la matriz donde comprobaremos la disponibilidad de las posiciones
 let matriz = crearMatriz();
 
 //creamos un array para la matriz de la demo donde iremos introduciendo "en orden" las posiciones y el color de estas
 var matrizDemo = [];
+
+//añadimos los escuchadores de evento
+window.onload = function(){
+	anadirEscuchador();
+}
+
 
 //Definir un set con el tipo de Barcos posibles.
 var tiposBarcos = new Set(["lanchas", "portaAviones", "flota", "armada"]);
