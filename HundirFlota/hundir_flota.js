@@ -166,7 +166,7 @@ class jugador extends personaC{
 */
 
 /*Clase Barco, aun no implementada*/
-class Barco{
+/*class Barco{
 	constructor(tamano, color){
 		this._tamano = t;
 		this._color = c;
@@ -186,7 +186,7 @@ class Barco{
 	anadirCoords(valor){
 		_coordenadas.push(valor);
 	}
-}
+}*/
 
 /*--------------------Funciones--------------------*/
 function crearMatriz(){
@@ -308,13 +308,24 @@ function anadirEscuchador(){
 function disparar(casilla){
 	//si toca agua
 	if(casilla.target.style.backgroundColor == ""){
-		alert("agua")
 		casilla.target.style.backgroundColor = "aquamarine";
+		//aumentamos el contador de fallos
+		flls++;
+		//restamos 10 puntos si la puntuacion no es 0
+		if (pntcn != 0) {
+			pntcn-=10;
+		}
+
 	}
 	else{
-		alert("flota");
 		casilla.target.style.backgroundColor = "black";
+		//aumentamos el contador de aciertos
+		acrts++;
+		//aumentamos la puntuacion en 10 puntos
+		pntcn+=10;
 	}
+	refrescarInfor(pntcn, acrts, flls);
+
 	//una vez hayamos hecho clic a la casilla, esta ya no requiere
 	//que siga escuchando mas clics
 	quitarEscucha(this);
@@ -322,6 +333,32 @@ function disparar(casilla){
 
 function quitarEscucha(casilla){
 	casilla.removeEventListener("click", disparar);
+}
+
+function refrescarInfor(p, a, f){
+	//lo añadimos a la instancia jugador
+	jugador1.puntuacion = p;
+	jugador1.aciertos = a;
+	jugador1.fallos = f;
+
+	//refrescamos en pantalla
+	vPunt.innerHTML = jugador1.puntuacion;
+	vAciert.innerHTML = jugador1.aciertos;
+	vFalls.innerHTML = jugador1.fallos;
+}
+
+//al no haber podido arreglar el fallo de que no se entre crucen las flotas
+//creamos una funcion para comprobar cuantas casillas de agua
+//hay y con ello saber cuantos aciertos maximos se puede tener
+function aciertosMaximos(){
+	//usaremos este segmento de codigo para saber cuantas aguas tiene el mapa
+	let trs = document.getElementsByTagName("tbody")[0].children;
+	for (let x = 0; x < trs.length; x++){
+		for(let y = 0; y < trs[x].children.length; y++){
+			//añadimos el evento clic de disparar a cada td
+			trs[x].children[y].addEventListener("click", disparar);
+		}
+	}
 }
 
 /**
@@ -346,6 +383,9 @@ const url = new URLSearchParams(window.location.search);
 var nombreUrl = url.get("nombre");
 var apellidosUrl = url.get("apellidos");
 var edadUrl = url.get("edad");
+
+//lo mostramos en pantalla
+let pA = document.getElementById("idPuntuacion");
 
 //creamos la matriz donde comprobaremos la disponibilidad de las posiciones
 let matriz = crearMatriz();
@@ -404,3 +444,16 @@ function ubicarBarcos(){
 ubicarBarcos();
 var autor1 = completarAutor();
 var jugador1 = completarJugador();
+
+//creamos las variables puntuacion, aciertos y fallos que modificaran a la instancia de jugador
+let pntcn = 0;
+let acrts = 0;
+let flls = 0;
+
+//mostramos la informacion del juego por pantalla, v de visual
+let vPunt = document.getElementById("idPuntuacion");
+vPunt.innerHTML = jugador1.puntuacion;
+let vAciert = document.getElementById("idAciertos");
+vAciert.innerHTML = jugador1.aciertos;
+let vFalls = document.getElementById("idFallos");
+vFalls.innerHTML = jugador1.fallos;
