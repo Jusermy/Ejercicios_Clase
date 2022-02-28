@@ -1,3 +1,5 @@
+console.log("Esta es la entrega con los minimos. Quiero intentar implementar un json server para guardar las diferentes puntuaciones maximas")
+
 /*--------------------Clases-----------------------*/
 class personaC{
 	constructor(n, a, e){
@@ -174,7 +176,7 @@ class jugador extends personaC{
 	>'adios'
 */
 
-/*Clase Barco, aun no implementada*/
+/*Clase Barco, no implementada*/
 /*class Barco{
 	constructor(tamano, color){
 		this._tamano = t;
@@ -250,7 +252,7 @@ function verificarCampos(tipo, sentido){
 function pintarBarcos(tipo, sentido){
 	//ocupamos la celda y la pintamos
 	matriz[x][y] = 1;
-	document.getElementById(`id_${x}_${y}`).style.backgroundColor = colorBarcos.get(tipo);
+	document.getElementById(`id_${x}_${y}`).classList.add(colorBarcos.get(tipo));
 	//introducimos los datos en la matriz para la demo
 	matrizDemo.push([[x],[y],[colorBarcos.get(tipo)]]);
 
@@ -259,7 +261,7 @@ function pintarBarcos(tipo, sentido){
 		//ocupamos las casillas siguientes a ella
 		for(let i = 0; i < tamanoBarcos.get(tipo); i++){
 			matriz[x][y+i] = 1;
-			document.getElementById(`id_${x}_${y+i}`).style.backgroundColor = colorBarcos.get(tipo);
+			document.getElementById(`id_${x}_${y+i}`).classList.add(colorBarcos.get(tipo));
 			matrizDemo.push([[x],[y+i],[colorBarcos.get(tipo)]]);
 		}
 	}
@@ -268,7 +270,7 @@ function pintarBarcos(tipo, sentido){
 		//ocupamos las casillas siguientes a ella
 		for(let i = 0; i < tamanoBarcos.get(tipo); i++){
 			matriz[x+i][y] = 1;
-			document.getElementById(`id_${x+i}_${y}`).style.backgroundColor = colorBarcos.get(tipo);
+			document.getElementById(`id_${x+i}_${y}`).classList.add(colorBarcos.get(tipo));
 			matrizDemo.push([[x+i],[y],[colorBarcos.get(tipo)]]);
 		}
 	}
@@ -303,6 +305,7 @@ function completarJugador(){
 	return jug;
 }
 
+
 function anadirEscuchador(){
 	//recogemos todos los tr
 	let trs = document.getElementsByTagName("tbody")[0].children;
@@ -316,7 +319,7 @@ function anadirEscuchador(){
 
 function disparar(casilla){
 	//si toca agua
-	if(casilla.target.style.backgroundColor == ""){
+	if(casilla.target.classList.value == ""){
 		casilla.target.style.backgroundColor = "aquamarine";
 		//aumentamos el contador de fallos
 		flls++;
@@ -327,7 +330,12 @@ function disparar(casilla){
 
 	}
 	else{
-		casilla.target.style.backgroundColor = "black";
+		//al no haber podido arreglar el problema del solapamiento, habra momentos
+		//en los que tendremos mas de una clase en una casilla. Esto causa un problema visual
+		//Por ello haremos split y nos quedaremos con la ultima cadena
+		let colorCasilla =  casilla.target.classList.value.split(" ");
+		casilla.target.style.backgroundColor = colorCasilla[colorCasilla.length -1];
+
 		//aumentamos el contador de aciertos
 		acrts++;
 		//aumentamos la puntuacion en 10 puntos
@@ -374,7 +382,7 @@ function aciertosMaximos(){
 	let aguas = 0;
 	for (let x = 0; x < trs.length; x++){
 		for(let y = 0; y < trs[x].children.length; y++){
-			if(trs[x].children[y].style.backgroundColor == ""){
+			if(trs[x].children[y].classList.value == ""){
 				aguas++;
 			}
 		}
@@ -406,6 +414,10 @@ function quitarTodosLosEscucha(){
 		}
 	}
 
+	//guardamos la puntuacion para ver si hay que añadir nuevo usuario o modificar un registro
+	guardarPuntuacion();
+
+	//preguntamos si quiere repetir el juego
 	repetirJuego();
 }
 
@@ -426,9 +438,39 @@ function repetirJuego(){
 	}
 }
 
-//YA TENEMOS EL CODIGO DE LA PUNTUACION MAXIMA
-//AHORA TOCA TRATAR DE IMPLEMENTAR LA BASE DE DATOS JSON 
-//PERO ANTES TENDRIAMOS QUE TRATAR DE VER COMO HACEMOS PARA QUE NO SE VEAN LAS CASILLAS COLOREADAS
+function guardarPuntuacion(){
+	if (typeof(Storage) !== "undefined") {
+		//si no existe un usuario con este nombre, creamos un nuevo registro con este
+		if (localStorage.getItem(jugador1.nombre) == null) {
+			localStorage.setItem(jugador1.nombre, jugador1.puntuacionMaxima);
+		}
+		//si ya existe, comprobaremos la puntuacion actual con la antigua para ver si hay que cambiar la maxima
+		else{
+			//si la guardada es menor, actualizaremos el registro
+			if (localStorage.getItem(jugador1.nombre) < jugador1.puntuacionMaxima) {
+				localStorage.removeItem(jugador1.nombre);
+				localStorage.setItem(jugador1.nombre, jugador1.puntuacionMaxima);		
+			}
+		}
+
+	} else {
+		console.log("Este navegador no soporta el Local Storage")
+	}
+}
+
+function puntuacionesStorage() {
+	//creditos al usuario Timo Tijhof
+	//https://stackoverflow.com/questions/17745292/how-to-retrieve-all-localstorage-items-without-knowing-the-keys-in-advance
+    var lS = [],
+        keys = Object.keys(localStorage),
+        i = 0, key;
+
+    for (; key = keys[i]; i++) {
+        lS.push( key + ': ' + localStorage.getItem(key));
+    }
+
+    return lS;
+}
 
 /*--------------Codigo--------------------------*/
 
@@ -518,10 +560,31 @@ let vPunt = document.getElementById("idPuntuacion");
 vPunt.innerHTML = jugador1.puntuacion;
 
 let vPuntMax = document.getElementById("idPuntuacionMaxima");
-vPuntMax.innerHTML = jugador1.puntuacionMaxima;
+//si existe un usuario con este nombre, lo modificaremos para que aparezca la maxima al principio
+if (localStorage.getItem(jugador1.nombre) != null) {
+	vPuntMax.innerHTML = localStorage.getItem(jugador1.nombre);
+}
+else{
+	vPuntMax.innerHTML = jugador1.puntuacionMaxima;
+}
 
 let vAciert = document.getElementById("idAciertos");
 vAciert.innerHTML = jugador1.aciertos;
 
 let vFalls = document.getElementById("idFallos");
 vFalls.innerHTML = jugador1.fallos;
+
+//Si hay registros de otras puntuaciones, se ponen abajo
+if (localStorage.length != 0) {
+	let puntuaciones = puntuacionesStorage();
+	let vPuntuaciones = document.getElementById("idPuntuaciones");
+	let h3 = document.createElement("h3");
+	h3.appendChild(document.createTextNode("Puntuaciones máximas de los usuarios"));
+	vPuntuaciones.appendChild(h3);
+
+	puntuaciones.forEach(vPuntuacion => {
+		let span = document.createElement("span");
+		span.appendChild(document.createTextNode(`${vPuntuacion}. `));
+		vPuntuaciones.appendChild(span);
+	})
+}

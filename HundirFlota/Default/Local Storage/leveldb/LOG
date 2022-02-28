@@ -1,3 +1,6 @@
 2022/02/22-14:55:45.581 5 Reusing MANIFEST /home/administrador/workspace/Ejercicios_Clase/HundirFlota/Default/Local Storage/leveldb/MANIFEST-000001
 2022/02/22-14:55:45.582 5 Recovering log #3
 2022/02/22-14:55:45.583 5 Reusing old log /home/administrador/workspace/Ejercicios_Clase/HundirFlota/Default/Local Storage/leveldb/000003.log 
+2022/02/28-22:25:16.436 4b Level-0 table #5: started
+2022/02/28-22:25:16.442 4b Level-0 table #5: 10472 bytes OK
+2022/02/28-22:25:16.445 4b Delete type=0 #3

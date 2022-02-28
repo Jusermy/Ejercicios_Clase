@@ -42,6 +42,8 @@ function confirmarJS(e){
 function validarNombre(){
 	let nombre = formulario.elements["idNombre"];
 	let errorNombre = document.getElementById("errorNombreJs");
+	//creamos un array de caracteres para verificar que no hay ningun numero
+	let caracteres = nombre.value.split("");
 
 	//si esta vacio
 	if (nombre.value == "") {
@@ -50,18 +52,20 @@ function validarNombre(){
 		return false;
 	}
 
-	//si es un numero
-	else if(!isNaN(nombre.value)){
-		nombre.focus();
-		errorNombre.innerHTML = "El nombre solo puede estar formado por letras.";
-		return false;	
-	}
-
 	//si no cumple con la extension
 	else if (nombre.value.length < 2 || nombre.value.length > 12) {
 		nombre.focus();
 		errorNombre.innerHTML = "El nombre debe tener minimo 2 y maximo 12 letras.";
 		return false;		
+	}
+
+	//si hay algun un numero
+	for (let i = 0; i < caracteres.length; i++){
+		if (!isNaN(caracteres[i])) {
+			nombre.focus();
+			errorNombre.innerHTML = "El nombre solo puede estar formado por letras.";
+			return false;	
+		}
 	}
 	return true;
 }
@@ -69,10 +73,23 @@ function validarNombre(){
 function validarApellido(){
 	let apellido = formulario.elements["idApellido"];
 	let errorApellido = document.getElementById("errorApellidoJs");
+	//creamos un array de caracteres para verificar que no hay ningun numero
+	let caracteres = apellido.value.split("");
+
+	//si esta vacio
 	if (apellido.value == "") {
 		apellido.focus();
-		errorApellido.innerHTML = "No debe estar vacio y deben ser solo letras";
+		errorApellido.innerHTML = "No debe estar vacio.";
 		return false;
+	}
+
+	//si hay algun un numero
+	for (let i = 0; i < caracteres.length; i++){
+		if (!isNaN(caracteres[i])) {
+			apellido.focus();
+			errorApellido.innerHTML = "El apellido solo puede estar formado por letras.";
+			return false;	
+		}
 	}
 	return true;
 }
@@ -87,7 +104,14 @@ function validarEdad(){
 	}
 
 	if(isNaN(edad.value)){
-		errorEdad.innerHTML = " Deben ser solo numeros";
+		edad.focus();
+		errorEdad.innerHTML = "Deben ser solo numeros";
+		return false;
+	}
+
+	if (edad.value < 18) {
+		edad.focus();
+		errorEdad.innerHTML = "Debes ser mayor de edad.";
 		return false;
 	}
 	return true;
@@ -115,7 +139,6 @@ function validarNombreApi(){
 		errorNombre.innerHTML = nombre.validationMessage;
 		return false;
 	}
-	console.log("no ha pasado por la api");
 	return true;
 }
 
@@ -135,7 +158,6 @@ function validarApellidoApi(){
 		errorApellido.innerHTML = apellido.validationMessage;
 		return false;
 	}
-	console.log("no ha pasado por la api");
 	return true;
 }
 
@@ -155,6 +177,5 @@ function validarEdadApi(){
 		errorEdad.innerHTML = edad.validationMessage;
 		return false;
 	}
-	console.log("no ha pasado por la api");
 	return true;
 }

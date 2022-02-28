@@ -14,3 +14,9 @@ td{
 #idInformacion table td {
 	border: 1px solid white;
 }
+
+a {
+	text-decoration: none;
+	color: black;
+	cursor: context-menu;
+}
