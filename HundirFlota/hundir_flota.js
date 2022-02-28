@@ -101,11 +101,12 @@ class autor extends personaC{
 
 class jugador extends personaC{
 	#_idJ = 1;
-	constructor(n, a, e, p=0, ac=0, f=0){
+	constructor(n, a, e, p=0, ac=0, f=0, pM=0){
 		super(n, a, e);
 		this._puntuacion = p;
 		this._aciertos = ac;
 		this._fallos = f;
+		this._puntuacionMaxima = pM;
 	}
 
 	get puntuacion(){
@@ -118,6 +119,10 @@ class jugador extends personaC{
 
 	get fallos(){
 		return this._fallos;
+	}
+
+	get puntuacionMaxima(){
+		return this._puntuacionMaxima;
 	}
 
 	get #idJ(){
@@ -134,6 +139,10 @@ class jugador extends personaC{
 
 	set fallos(valor){
 		this._fallos = valor;
+	}
+
+	set puntuacionMaxima(valor){
+		this._puntuacionMaxima = valor;
 	}
 
 	set #idJ(valor){
@@ -290,7 +299,7 @@ function completarAutor(){
 
 function completarJugador(){
 	//nombre apellido edad puntuacion aciertos fallos
-	let jug = new jugador(nombreUrl, apellidosUrl, edadUrl, 0, 0, 0);
+	let jug = new jugador(nombreUrl, apellidosUrl, edadUrl, 0, 0, 0, 0);
 	return jug;
 }
 
@@ -323,58 +332,103 @@ function disparar(casilla){
 		acrts++;
 		//aumentamos la puntuacion en 10 puntos
 		pntcn+=10;
+
+		//si la puntuacion actual es mayor que la maxima, modificamos la puntuacion maxima
+		if(pntcn >= pntcnMx){
+			pntcnMx = pntcn;
+		}
 	}
-	refrescarInfor(pntcn, acrts, flls);
+	refrescarInfor(pntcn, acrts, flls, pntcnMx);
 
 	//una vez hayamos hecho clic a la casilla, esta ya no requiere
 	//que siga escuchando mas clics
 	quitarEscucha(this);
+
+	//comprobamos el estado del juego, si se ha fallado todo o ha acertado todo
+	juegoFinalizado();
 }
 
 function quitarEscucha(casilla){
 	casilla.removeEventListener("click", disparar);
 }
 
-function refrescarInfor(p, a, f){
+function refrescarInfor(p, a, f, pM){
 	//lo añadimos a la instancia jugador
 	jugador1.puntuacion = p;
 	jugador1.aciertos = a;
 	jugador1.fallos = f;
+	jugador1.puntuacionMaxima = pM;
 
 	//refrescamos en pantalla
 	vPunt.innerHTML = jugador1.puntuacion;
 	vAciert.innerHTML = jugador1.aciertos;
 	vFalls.innerHTML = jugador1.fallos;
+	vPuntMax.innerHTML = jugador1.puntuacionMaxima;
 }
 
 //al no haber podido arreglar el fallo de que no se entre crucen las flotas
 //creamos una funcion para comprobar cuantas casillas de agua
 //hay y con ello saber cuantos aciertos maximos se puede tener
 function aciertosMaximos(){
-	//usaremos este segmento de codigo para saber cuantas aguas tiene el mapa
+	let trs = document.getElementsByTagName("tbody")[0].children;
+	let aguas = 0;
+	for (let x = 0; x < trs.length; x++){
+		for(let y = 0; y < trs[x].children.length; y++){
+			if(trs[x].children[y].style.backgroundColor == ""){
+				aguas++;
+			}
+		}
+	}
+	//las casillas con flotas seran las casillas restantes
+	return 100 - aguas; 
+}
+
+//haremos una funcion con la que comprobaremos en cada momento si ha perdido o ganado el usuario
+function juegoFinalizado(){
+	if(jugador1.aciertos == aMaximos){
+		alert("Has ganado");
+		quitarTodosLosEscucha();
+		return true;
+	}
+	else if (jugador1.fallos == (100 - aMaximos)) {
+		alert("Has perdido");
+		quitarTodosLosEscucha();
+		return true;
+	}
+	return false;
+}
+
+function quitarTodosLosEscucha(){
 	let trs = document.getElementsByTagName("tbody")[0].children;
 	for (let x = 0; x < trs.length; x++){
 		for(let y = 0; y < trs[x].children.length; y++){
-			//añadimos el evento clic de disparar a cada td
-			trs[x].children[y].addEventListener("click", disparar);
+			trs[x].children[y].removeEventListener("click", disparar);
 		}
+	}
+
+	repetirJuego();
+}
+
+//funcion para darle la opcion al jugador de volver a jugar
+function repetirJuego(){
+	if (confirm("¿Desea volver a jugar?") == true) {
+		//recargaremos la pagina
+		window.location.reload();
+	}
+
+	//en caso de que no, le creamos de todas maneras un boton para que pueda volver a jugar
+	else{
+		let botones = document.getElementById("idBotones");
+		let btnRepetir = document.createElement("button");
+		btnRepetir.appendChild(document.createTextNode("Repetir Juego"));
+		btnRepetir.addEventListener("click",()=>{ window.location.reload();})
+		botones.appendChild(btnRepetir);
 	}
 }
 
-/**
- * 
- * 
- * IDEAS
- * Podemos hacer que las puntuaciones mas altas del jugador sean almacenadas en un json
- * Para ello tendremos que añadir una manera de que en la database recuperemos un jugador
- * en concreto. Dni no es una buena idea
- * 
- * Hay que intentar ver como hacemos para que las casillas no se muestren el color
- * 
- * Es posible que tengamos que generar la matriz mediante codigo y no por el html
- * 
- * 
- * /
+//YA TENEMOS EL CODIGO DE LA PUNTUACION MAXIMA
+//AHORA TOCA TRATAR DE IMPLEMENTAR LA BASE DE DATOS JSON 
+//PERO ANTES TENDRIAMOS QUE TRATAR DE VER COMO HACEMOS PARA QUE NO SE VEAN LAS CASILLAS COLOREADAS
 
 /*--------------Codigo--------------------------*/
 
@@ -447,13 +501,27 @@ var jugador1 = completarJugador();
 
 //creamos las variables puntuacion, aciertos y fallos que modificaran a la instancia de jugador
 let pntcn = 0;
+let pntcnMx = 0;
 let acrts = 0;
 let flls = 0;
 
+//ademas del numero maximo de aciertos posibles
+let aMaximos = aciertosMaximos();
+//lo indicamos en consola para saberlo
+console.log(`Aciertos maximos posibles: ${aMaximos}`);
+
 //mostramos la informacion del juego por pantalla, v de visual
+let vNombreJugador = document.getElementById("idNombreJugador");
+vNombreJugador.innerHTML = jugador1.nombre;
+
 let vPunt = document.getElementById("idPuntuacion");
 vPunt.innerHTML = jugador1.puntuacion;
+
+let vPuntMax = document.getElementById("idPuntuacionMaxima");
+vPuntMax.innerHTML = jugador1.puntuacionMaxima;
+
 let vAciert = document.getElementById("idAciertos");
 vAciert.innerHTML = jugador1.aciertos;
+
 let vFalls = document.getElementById("idFallos");
 vFalls.innerHTML = jugador1.fallos;

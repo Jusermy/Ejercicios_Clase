@@ -7,3 +7,10 @@ td{
 .error {
 	color: red;
 }
+#idInformacion table {
+	border-collapse: collapse;
+}
+
+#idInformacion table td {
+	border: 1px solid white;
+}
